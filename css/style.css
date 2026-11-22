@@ -1,31 +1,29 @@
-/* Pedro Prime Fitness — site stylesheet
-   Colours are CSS variables. The four blue-grey palettes are selected by the
-   data-palette attribute on <html> (set by js/palette.js). */
+/* Pedro Prime Fitness — site stylesheet. Colours are CSS variables in :root. */
 
 :root {
-  --background: #010203;
-  --card: #04060b;
-  --muted: #14161b;
+  --background: #20334f;
+  --background-rgb: 32, 51, 79;   /* same colour as --background, for translucent overlays */
+  --card: #283d5c;
+  --muted: #30486b;
   --foreground: #eceff2;
-  --muted-foreground: #7a808d;
+  --body-text: #d6e0ed;
+  --muted-foreground: #a6b8d0;
   --border: #ffffff14;
+  --ph-light: #3a5a88;            /* image-placeholder gradient */
+  --ph-dark: #20334f;
   --radius: 0.625rem;
 
   /* Accent: --accent is used for fills (buttons, numbers, rules);
-     --accent-text is a lighter tint for accent-coloured text on the dark background. */
-  --accent: #3d4b5c;
-  --accent-hover: #4a5a6d;
-  --accent-text: #9fb0c3;
+     --accent-text is a lighter tint for accent-coloured text on the background. */
+  --accent: #2f5f9e;
+  --accent-hover: #3a6db0;
+  --accent-text: #c6daf2;
+  --accent-foreground: var(--foreground);  /* text on accent fills */
 
   --font-heading: "Bebas Neue", sans-serif;
   --font-body: "Inter", sans-serif;
   --container: 72rem;
 }
-
-[data-palette="slate"] { --accent: #3d4b5c; --accent-hover: #4a5a6d; --accent-text: #9fb0c3; }
-[data-palette="steel"] { --accent: #4a6177; --accent-hover: #587089; --accent-text: #a9bccf; }
-[data-palette="storm"] { --accent: #2c3a4a; --accent-hover: #38485b; --accent-text: #8fa3b8; }
-[data-palette="dusk"]  { --accent: #56657a; --accent-hover: #64748a; --accent-text: #b6c2d1; }
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -89,7 +87,7 @@ h1, h2, h3 {
   transition: background-color 0.15s, border-color 0.15s, color 0.15s;
 }
 
-.btn-primary { background: var(--accent); color: var(--foreground); }
+.btn-primary { background: var(--accent); color: var(--accent-foreground); }
 .btn-primary:hover { background: var(--accent-hover); }
 
 .btn-outline { border-color: #ffffff40; color: var(--foreground); }
@@ -108,7 +106,7 @@ a:focus-visible, button:focus-visible {
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 50;
-  background: rgba(1, 2, 3, 0.8);
+  background: rgba(var(--background-rgb), 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
@@ -181,7 +179,7 @@ a:focus-visible, button:focus-visible {
   position: relative;
   background:
     radial-gradient(ellipse at 30% 20%, color-mix(in srgb, var(--accent) 55%, transparent), transparent 60%),
-    linear-gradient(160deg, #1a1f27 0%, #07090d 100%);
+    linear-gradient(160deg, var(--ph-light) 0%, var(--ph-dark) 100%);
   display: flex;
   align-items: flex-end;
   overflow: hidden;
@@ -217,7 +215,7 @@ a:focus-visible, button:focus-visible {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(90deg, rgba(1,2,3,0.92) 0%, rgba(1,2,3,0.6) 55%, rgba(1,2,3,0.3) 100%);
+  background: linear-gradient(90deg, rgba(var(--background-rgb),0.92) 0%, rgba(var(--background-rgb),0.6) 55%, rgba(var(--background-rgb),0.3) 100%);
 }
 
 .hero .container { position: relative; z-index: 2; }
@@ -231,7 +229,7 @@ a:focus-visible, button:focus-visible {
   max-width: 34rem;
   margin: 1.5rem 0 2.5rem;
   font-size: 1.125rem;
-  color: #c9cdd4;
+  color: var(--body-text);
 }
 
 .btn-row { display: flex; flex-wrap: wrap; gap: 1rem; }
@@ -322,7 +320,7 @@ a:focus-visible, button:focus-visible {
   height: 1.5rem;
 }
 
-.testimonial blockquote { margin: 0 0 1.5rem; color: #c9cdd4; }
+.testimonial blockquote { margin: 0 0 1.5rem; color: var(--body-text); }
 .testimonial figcaption { font-weight: 600; }
 .testimonial figcaption span { display: block; font-weight: 400; font-size: 0.875rem; color: var(--muted-foreground); }
 
@@ -398,6 +396,7 @@ a:focus-visible, button:focus-visible {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   background: var(--accent);
+  color: var(--accent-foreground);
   padding: 0.25rem 0.625rem;
   border-radius: 4px;
   margin-bottom: 1rem;
@@ -432,7 +431,7 @@ a:focus-visible, button:focus-visible {
 .contact-panel h2 { font-size: 2.75rem; margin-bottom: 1rem; }
 
 .steps { counter-reset: step; list-style: none; padding: 0; margin: 1.5rem 0 2rem; }
-.steps li { counter-increment: step; display: flex; gap: 1rem; padding: 0.75rem 0; color: #c9cdd4; }
+.steps li { counter-increment: step; display: flex; gap: 1rem; padding: 0.75rem 0; color: var(--body-text); }
 .steps li::before {
   content: "0" counter(step);
   font-family: var(--font-heading);
@@ -472,32 +471,3 @@ a:focus-visible, button:focus-visible {
 .footer-nav a:hover { color: var(--foreground); }
 
 .footer-bottom { padding-top: 2rem; font-size: 0.8125rem; color: var(--muted-foreground); }
-
-/* ---------- Palette switcher (exploration only) ---------- */
-
-.palette-switcher {
-  position: fixed;
-  right: 1rem;
-  bottom: 1rem;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.75rem;
-  background: #0b0e13ee;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  font-size: 0.75rem;
-  color: var(--muted-foreground);
-}
-
-.palette-switcher button {
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-  border: 2px solid transparent;
-  cursor: pointer;
-  padding: 0;
-}
-
-.palette-switcher button[aria-pressed="true"] { border-color: var(--foreground); }
