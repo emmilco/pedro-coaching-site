@@ -24,7 +24,8 @@ are modelled on cityprofitness.com; all content is original placeholder.
 - Header and footer are duplicated in each page (no templating); edit all four pages together.
 - Image placeholders are `<div class="ph" data-label="...">`; replace each with `<img class="photo" ... width height loading="lazy">`.
 - Image filenames describe the shot in kebab-case (`barbell-curl.jpg`). Originals stay outside the repo.
-- Videos are `<video autoplay muted loop playsinline poster=...>`; `js/site.js` stops them for reduced-motion users.
+- Videos are `<video autoplay muted loop playsinline poster=...>`; `js/site.js` starts them explicitly and retries on first tap (iOS autoplay blocking).
+- CSS/JS links carry `?v=N`; bump it when changing those files so phones do not use a cached copy.
 - Photos and videos from different shoots share one grade (slightly darker, cooler, desaturated, light vignette) so they read as one set.
 - Placeholder text is marked `[Placeholder]`, `[...]`, `$XX`, or `Client Name`.
 - Contact email: `pedroprimefitness@gmail.com` (mailto links in `contact.html`).

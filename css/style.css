@@ -203,6 +203,11 @@ a:focus-visible, button:focus-visible {
 .service-row .photo.tall { aspect-ratio: 4 / 5; object-position: 50% 20%; }
 .service-row .photo.square { aspect-ratio: 1; }
 
+/* iOS draws a play glyph over a video that isn't playing; hide it so a
+   video blocked from autoplay looks like a still image instead. */
+video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+video::-webkit-media-controls { display: none !important; }
+
 /* ---------- Hero ---------- */
 
 /* Split hero: copy on the left (aligned to the page container), photo on the
